@@ -7,6 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+<p align="justify">
 ## Step by step
 1. Clone the Repository
    git clone git@github.com:Fortinenta/CatalogAbidinJT.git
@@ -68,3 +69,4 @@
         Login: Visit http://localhost:8000/admin/login and log in with:
         Email: admin@abidinjt.com
         Password: password
+</p>

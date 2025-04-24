@@ -9,64 +9,65 @@
 
 <p align="justify">
 ## Step by step
-1. Clone the Repository
-   git clone git@github.com:Fortinenta/CatalogAbidinJT.git
+    <br>
+1. Clone the Repository <br>
+   git clone git@github.com:Fortinenta/CatalogAbidinJT.git <br>
+<br>
+2. Install Dependencies <br>
+   composer install <br>
+   npm install <br>
+   npm run dev <br>
+<br>
+3. Configure the Environment <br>
+   cp .env.example .env <br>
 
-2. Install Dependencies
-   composer install
-   npm install
-   npm run dev
+4. Generate an Application Key <br>
+   php artisan key:generate <br>
+<br>
+5. Edit the .env <br>
+   APP_NAME="Catalog Abidin JT" <br>
+   APP_URL=http://localhost:8000 <br>
+   DB_CONNECTION=mysql <br>
+   DB_HOST=127.0.0.1 <br>
+   DB_PORT=3306 <br>
+   DB_DATABASE=catalog_abidinjt <br>
+   DB_USERNAME=your_mysql_username <br>
+   DB_PASSWORD=your_mysql_password <br>
+   FILESYSTEM_DRIVER=public <br>
+   SESSION_DRIVER=file <br>
+<br>
+6. Create the Database <br>
+   CREATE DATABASE catalog_abidinjt; <br>
+<br>
+7. Run Migrations <br>
+   php artisan migrate <br>
+<br>
+8. Seed the Database <br>
+   php artisan db:seed <br>
+<br>
+9. Create an Admin User <br>
+    INSERT INTO users (name, email, password, created_at, updated_at) <br>
+        VALUES ('Admin', 'admin@abidinjt.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NOW(), NOW()); <br>
 
-3. Configure the Environment
-   cp .env.example .env
-
-4. Generate an Application Key
-   php artisan key:generate
-
-5. Edit the .env
-   APP_NAME="Catalog Abidin JT"
-   APP_URL=http://localhost:8000
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=catalog_abidinjt
-   DB_USERNAME=your_mysql_username
-   DB_PASSWORD=your_mysql_password
-   FILESYSTEM_DRIVER=public
-   SESSION_DRIVER=file
-
-6. Create the Database
-   CREATE DATABASE catalog_abidinjt;
-
-7. Run Migrations
-   php artisan migrate
-
-8. Seed the Database
-   php artisan db:seed
-
-9. Create an Admin User
-    INSERT INTO users (name, email, password, created_at, updated_at)
-        VALUES ('Admin', 'admin@abidinjt.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NOW(), NOW());
-
-10. Create the Storage Link
-    php artisan storage:link
-
-11. Clear Cache and Verify Configuration
-    php artisan cache:clear
-    php artisan route:clear
-    php artisan config:clear
-    php artisan view:clear
-    composer dump-autoload
-
-12. Run and Test the Application
-    php artisan serve
-
-    Test the Public Pages:
-        Home Page: Visit http://localhost:8000 to see the landing page with featured products.
-        Catalog Page: Visit http://localhost:8000/catalog to browse products, filter by name, type, or price.
-        Product Detail Page: Click on a product to view its details, including specifications and images (images may be missing until uploaded).
-    Test the Admin Panel:
-        Login: Visit http://localhost:8000/admin/login and log in with:
-        Email: admin@abidinjt.com
-        Password: password
+10. Create the Storage Link <br>
+    php artisan storage:link <br>
+<br>
+11. Clear Cache and Verify Configuration <br>
+    php artisan cache:clear <br>
+    php artisan route:clear <br>
+    php artisan config:clear <br>
+    php artisan view:clear <br>
+    composer dump-autoload <br>
+<br>
+12. Run and Test the Application <br>
+    php artisan serve <br>
+<br>
+    Test the Public Pages: <br>
+        Home Page: Visit http://localhost:8000 to see the landing page with featured products. <br>
+        Catalog Page: Visit http://localhost:8000/catalog to browse products, filter by name, type, or price. <br>
+        Product Detail Page: Click on a product to view its details, including specifications and images (images may be missing until uploaded). <br>
+    Test the Admin Panel: <br>
+        Login: Visit http://localhost:8000/admin/login and log in with: <br>
+        Email: admin@abidinjt.com <br>
+        Password: password <br>
 </p>

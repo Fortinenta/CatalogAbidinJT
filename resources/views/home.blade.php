@@ -1,29 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="hero">
-    <div>
-        <h1>PT. Abidin Jaya Teknik</h1>
-        <p>PT. Abidin Jaya Teknik adalah perusahaan yang bergerak di bidang persewaan</p>
-        <a href="/catalog" class="btn btn-success">Produk Kami</a>
+<div class="hero" id="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">PT. ABIDIN JAYA TEKNIK</h1>
+        <p class="hero-subtitle">PT. Abidin Jaya Teknik sebuah perusahaan yang bergerak di bidang pemasaran</p>
+        <a href="/catalog" class="btn hero-button">PRODUK KAMI</a>
     </div>
 </div>
 
-<div class="container my-5">
-    <h2>Produk Kami</h2>
-    <div class="row">
-        @forelse($products as $product)
-        <div class="col-md-3 mb-4">
-            <div class="card">
+<div class="container product-section" id="product-section">
+    <div class="product-header">
+        <h2 class="product-title">PRODUK KAMI</h2>
+        <a href="/catalog" class="view-all product-view-all">View all <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="row product-grid">
+        @forelse($products->take(4) as $product)
+        <div class="col-lg-3 col-md-6 col-sm-12 product-item mb-4">
+            <div class="product-card">
                 @if($product->images->first())
-                <img src="{{ $product->images->first()->image_path }}" class="card-img-top" alt="{{ $product->name }}">
+                <img src="{{ $product->images->first()->image_path }}" alt="{{ $product->name }}">
                 @else
-                <img src="https://via.placeholder.com/200" class="card-img-top" alt="No Image">
+                <img src="https://via.placeholder.com/200" alt="No Image">
                 @endif
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
-                    <p class="card-text">{{ $product->type }}</p>
-                    <a href="{{ route('catalog.show', $product->id) }}" class="btn btn-primary">Lihat Detail</a>
+                    <p class="card-location">{{ $product->location ?? 'Unknown Location' }}</p>
                 </div>
             </div>
         </div>
@@ -33,20 +35,22 @@
         </div>
         @endforelse
     </div>
-    <div class="text-end">
-        <a href="/catalog" class="btn btn-link">View all →</a>
-    </div>
 </div>
 
-<div class="container my-5">
-    <h2>Tentang Kami</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sapien justo. Nulla facilisi tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#" class="btn btn-link">Read more →</a>
+<div class="container tentang-kami-section" id="tentang-kami-section">
+    <div class="product-header">
+        <h2>TENTANG KAMI</h2>
+        <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 mb-4">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sapien justo. Nulla facilisis
+                tristique imperdiet. Nullam a placerat odio. Sed in ex augue. Aliquam porta consectetur lorem sit amet
+                ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </p>
         </div>
-        <div class="col-md-6">
-            <img src="https://via.placeholder.com/400" class="img-fluid rounded" alt="Tentang Kami">
+        <div class="col-lg-6 col-md-12">
+            <img src="https://polstore.co.uk/wp-content/uploads/2020/05/2023_edwards_roller-shutter_engineering_001-1024x768.jpg" class="tentang-kami-img" alt="Tentang Kami">
         </div>
     </div>
 </div>

@@ -11,10 +11,8 @@ Route::get('/catalog/{id}', [CatalogController::class, 'show'])->name('catalog.s
 
 Route::prefix('admin')->group(function () {
     Auth::routes(['register' => false]);
-    // Explicitly define the login route to ensure it works
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
-
     Route::middleware('auth')->group(function () {
         Route::get('/', function () {
             return view('admin.dashboard');

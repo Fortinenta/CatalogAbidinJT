@@ -1,30 +1,20 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        $products = Product::with('images')->get(); // Eager load images
+        return view('home', compact('products'));
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-       {
-           $products = Product::with('images')->take(4)->get();
-           return view('home', compact('products'));
-       }
+    // public function catalog(Request $request)
+    // {
+    //     $products = Product::with('images')->paginate(9); // Pagination
+    //     return view('catalog', compact('products'));
+    // }
 }

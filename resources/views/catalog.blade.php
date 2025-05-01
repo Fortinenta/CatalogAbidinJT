@@ -16,9 +16,9 @@
                 @endif
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
-                    <p class="card-location">{{ $product->location ?? 'Unknown Location' }}</p>
+                    <p class="card-type">{{ $product->type }}</p>  {{-- Tampilkan jenis produk --}}
                     <p class="card-description">{{ $product->description }}</p>
-                    <a href="{{ route('catalog.show', $product->id) }}" class="btn btn-primary">Lihat Detail</a>
+                    <a href="{{ route('catalog.show', $product->id) }}" class="btn hero-button">Lihat Detail</a> {{-- Gunakan class hero-button --}}
                 </div>
             </div>
         </div>
@@ -29,14 +29,17 @@
         @endforelse
     </div>
 
-    {{ $products->links() }}  </div>
+    {{ $products->links() }}
+</div>
 @endsection
 
 @section('scripts')
     <style>
         .product-catalog {
             padding: 50px 0;
-            background-color: #f8f9fa;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparansi sedikit */
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Efek bayangan halus */
         }
         .product-catalog h1 {
             text-align: center;
@@ -45,10 +48,13 @@
         }
         .product-card {
             background-color: #fff;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease; /* Transisi halus */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .product-card:hover {
             transform: scale(1.02);
@@ -57,23 +63,27 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 10px 10px 0 0;
+            border-radius: 12px 12px 0 0;
         }
         .card-body {
             padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
         }
         .card-title {
-            font-size: 1.2rem;
+            font-size: 16px;
             color: #333;
             margin-bottom: 10px;
         }
-        .card-location {
-            font-size: 0.9rem;
-            color: #6c757d;
+        .card-type {
+            font-size: 14px;
+            color: #666;
             margin-bottom: 10px;
         }
         .card-description {
-            font-size: 1rem;
+            font-size: 14px;
             color: #495057;
         }
         .btn-primary {

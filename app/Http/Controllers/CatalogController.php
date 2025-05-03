@@ -27,16 +27,18 @@ class CatalogController extends Controller
 
         $products = $query->paginate(12)->appends($request->query());
 
-        return view('catalog', compact('products'));
+        // Fetch distinct product types from the database
+        $types = Product::distinct()->pluck('type')->filter()->sort()->values()->toArray();
+
+        return view('catalog', compact('products', 'types'));
     }
 
     public function show($id)
     {
         $product = Product::with('specifications', 'images')->findOrFail($id);
 
-        // Fetch related products (same type, excluding the current product)
+        // Fetch related products (random, excluding the current product)
         $relatedProducts = Product::with('images')
-            ->where('type', $product->type) // Match products with the same type
             ->where('id', '!=', $product->id) // Exclude the current product
             ->inRandomOrder() // Randomize the results
             ->take(4) // Limit to 4 related products

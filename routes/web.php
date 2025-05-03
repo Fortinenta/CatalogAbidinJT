@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/catalog/{id}', [CatalogController::class, 'show'])->name('catalog.show');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 Route::prefix('admin')->group(function () {
     Auth::routes(['register' => false]);

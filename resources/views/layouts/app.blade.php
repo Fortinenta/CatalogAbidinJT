@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'PT. Abidin Jaya Teknik')</title>
-    <meta name="description" content="@yield('meta_description', 'PT. Abidin Jaya Teknik - Penyedia Sparepart Konstruksi Terpercaya')">
-    <meta name="keywords" content="@yield('meta_keywords', 'sparepart konstruksi, alat berat, teknik, bangunan')">
+    <meta name="description" content="@yield('meta_description', 'PT. Abidin Jaya Teknik - Penyedia Material Teknik Terpercaya')">
+    <meta name="keywords" content="@yield('meta_keywords', 'material teknik, konstruksi, kelistrikan, telekomunikasi')">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        /* Reset dan Box Sizing */
+        /* Reset dan Gaya Dasar */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -20,14 +20,13 @@
         }
 
         html {
-            scroll-behavior: smooth; /* Efek smooth scrolling */
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #DAFFDB; /* Set background color to #DAFFDB */
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 600; /* SemiBold */
-            color: #555; /* Warna teks abu-abu lembut */
+            background: linear-gradient(135deg, #A3E4D7, #B2E0D6);
+            font-family: 'Inter', sans-serif;
+            color: #333;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -37,27 +36,28 @@
         a {
             text-decoration: none;
             color: inherit;
-            transition: color 0.3s ease-in-out;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         a:hover {
-            color: #75CFB8;
+            color: #4CAF50;
         }
 
         /* Navbar */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.95); /* White semi-transparent background */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             position: fixed;
-            top: 20px; /* Add margin from the top */
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%; /* Reduce width to create margin on sides */
-            max-width: 1200px; /* Optional: limit max width for larger screens */
+            width: 90%;
+            max-width: 1300px;
             z-index: 1000;
-            transition: all 0.3s ease-in-out;
-            padding: 10px 0;
-            border-radius: 20px; /* Rounded edges */
+            padding: 15px 0;
+            border-radius: 30px;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -67,41 +67,42 @@
         }
 
         .navbar-brand img {
-            height: 40px;
-            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
         }
 
         .navbar-toggler {
-            border-color: #555;
-        }
-
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(85, 85, 85, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+            border: none;
         }
 
         .navbar-nav {
             display: flex;
-            align-items: center;
-            width: 100%; /* Ensure the nav takes full width for better spacing */
-            justify-content: space-between; /* Distribute items with more space */
+            justify-content: space-between;
+            width: 100%;
         }
 
         .nav-item {
-            margin: 0 30px; /* Increased margin for wider spacing */
-            position: relative; /* For positioning the underline */
+            margin: 0 20px;
         }
 
         .nav-link {
-            color: #555 !important; /* Darker text color */
+            color: #fff !important;
             font-size: 16px;
             font-weight: 600;
-            padding: 10px 15px; /* Keep padding minimal to let margin take effect */
-            text-shadow: none; /* Remove text shadow */
+            padding: 10px 15px;
             position: relative;
-            transition: color 0.3s ease-in-out;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        /* Underline animation */
+        .nav-link:hover, .nav-link.active {
+            color: #4CAF50 !important;
+            transform: translateY(-2px);
+        }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -109,36 +110,28 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #75CFB8;
-            transform: scaleX(0); /* Start with no width */
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-in-out;
+            background: #4CAF50;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: scaleX(1); /* Expand to full width on hover or active */
-            transform-origin: bottom left;
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
         }
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: #75CFB8 !important; /* Hover and active color */
-        }
-
-        /* Hero Section */
+        /* Bagian Hero */
         .hero {
             background: url('{{ asset('images/hero-bg.jpg') }}') center/cover no-repeat;
             position: relative;
-            height: 650px; /* Increased height for a longer section */
+            height: 700px;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center content horizontally */
-            text-align: center; /* Center text */
+            justify-content: center;
+            text-align: center;
             color: #fff;
             overflow: hidden;
-            border-bottom-left-radius: 60px; /* Rounded bottom-left corner */
-            border-bottom-right-radius: 60px; /* Rounded bottom-right corner */
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
         }
 
         .hero::before {
@@ -148,505 +141,344 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 600px; /* Limit width for better readability */
+            max-width: 700px;
         }
 
         .hero-title {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 800; /* Extra Bold */
-            font-size: 4rem; /* Slightly larger to match Main.png */
-            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            line-height: 1.2;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1.5rem;
         }
 
         .hero-subtitle {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; /* Light */
-            font-size: 1.2rem; /* Adjusted to match Main.png */
-            color: #eee;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.3rem;
+            color: #f0f0f0;
             margin-bottom: 2.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            max-width: 500px; /* Limit subtitle width to match design */
-            margin-left: auto; /* Center the subtitle */
-            margin-right: auto; /* Center the subtitle */
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: #28A745; /* Green color to match the button in the image */
+            background: linear-gradient(90deg, #4CAF50, #66BB6A);
             color: #fff;
-            padding: 12px 24px; /* Adjusted padding to match Main.png */
-            border-radius: 25px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; /* Light */
-            font-size: 1rem;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            transition: all 0.3s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .hero-button i {
-            margin-right: 8px; /* Space between icon and text */
+            margin-right: 10px;
         }
 
         .hero-button:hover {
-            background-color: #218838; /* Darker green on hover */
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
         }
 
-        /* Product Section */
-        #product-section {
-            padding: 4rem 0;
-            background-color: transparent; /* Transparent background to show #DAFFDB */
-            margin-top: 4rem;
-            margin-bottom: 4rem;
+        /* Bagian Produk */
+        .product-section {
+            padding: 5rem 0;
+            background: transparent;
         }
 
         .product-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding: 0 1rem;
+            margin-bottom: 3rem;
         }
 
         .product-title {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            font-size: 2rem;
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #fff;
         }
 
         .product-view-all {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            color: #28A745; /* Green color to match the design */
-            font-size: 1rem;
-            transition: color 0.3s ease-in-out;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #4CAF50;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .product-view-all i {
-            margin-left: 8px;
+            margin-left: 10px;
         }
 
         .product-view-all:hover {
-            color: #218838; /* Darker green on hover */
+            color: #66BB6A;
+            transform: translateX(5px);
         }
 
         .product-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            padding: 0 1rem;
-        }
-
-        .product-item {
-            flex: 1 1 calc(25% - 1.5rem); /* Four items per row with gap */
-            min-width: 200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         .product-card {
-            background-color: #fff;
-            border-radius: 12px;
+            background: #fff;
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.2s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-card:hover {
-            transform: scale(1.03);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .product-card img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 12px 12px 0 0;
-            transition: opacity 0.3s ease-in-out;
+            transition: transform 0.3s ease;
         }
 
-        .product-card img:hover {
-            opacity: 0.8;
+        .product-card:hover img {
+            transform: scale(1.05);
         }
 
         .card-body {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .card-title {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
             color: #333;
             margin-bottom: 0.5rem;
-            line-height: 1.3;
         }
 
         .card-type {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
             color: #666;
         }
 
-        /* Product Detail Section */
-        .product-detail-section {
-            padding: 4rem 0;
-            background-color: transparent; /* Transparent to show #DAFFDB */
+        /* Bagian Siapa Kami */
+        .who-we-are-section {
+            padding: 5rem 0;
+            background: #F5F6F5;
         }
 
-        .small-product-img {
-            width: 100%;
-            height: 120px; /* Fixed height for smaller images */
-            object-fit: cover;
-            border-radius: 8px;
-            transition: opacity 0.3s ease-in-out;
+        .who-we-are-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #D32F2F;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
 
-        .small-product-img:hover {
-            opacity: 0.8;
+        .who-we-are-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
 
-        .main-product-img {
-            width: 100%;
-            height: 400px; /* Fixed height for main image */
-            object-fit: cover;
-            border-radius: 12px;
-            transition: transform 0.3s ease-in-out;
+        .who-we-are-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        .main-product-img:hover {
-            transform: scale(1.02);
+        .who-we-are-card {
+            background: #fff;
+            border-top: 2px solid #D1D5DB;
+            border-bottom: 2px solid #D1D5DB;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
 
-        .spec-title,
-        .info-title {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            font-size: 1.25rem;
-            color: #333;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 0.5rem;
+        .who-we-are-card:hover {
+            transform: translateY(-5px);
         }
 
-        .spec-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 1rem 0;
+        .who-we-are-card i {
+            color: #D32F2F;
+            margin-bottom: 1rem;
         }
 
-        .spec-list li {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; /* Light */
+        .who-we-are-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .who-we-are-card-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
             font-size: 1rem;
-            color: #555;
-            margin-bottom: 0.5rem;
+            color: #666;
         }
 
-        .info-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; /* Light */
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .info-text.price {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            font-size: 1.25rem;
-            color: #333;
-        }
-
-        /* Related Products Section */
-        .related-products-section {
-            margin-top: 4rem;
-        }
-
-        /* Tentang Kami Section */
-        #tentang-kami-section {
-            padding: 4rem 0;
-            background-color: transparent; /* Transparent background to show #DAFFDB */
-            margin-top: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        .tentang-kami-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding: 0 1rem;
+        /* Bagian Tentang Kami */
+        .tentang-kami-section {
+            padding: 5rem 0;
+            background: transparent;
         }
 
         .tentang-kami-title {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            font-size: 2rem;
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #fff;
         }
 
         .tentang-kami-content p {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300; /* Light */
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #f0f0f0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
         .tentang-kami-img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            transition: transform 0.3s ease-in-out;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .tentang-kami-img:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .tentang-kami-read-more {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600; /* Semibold */
-            color: #28A745; /* Green color to match the design */
-            font-size: 1rem;
-            transition: color 0.3s ease-in-out;
-            display: flex;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #4CAF50;
+            font-size: 1.1rem;
+            display: inline-flex;
             align-items: center;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .tentang-kami-read-more i {
-            margin-left: 8px;
+            margin-left: 10px;
         }
 
         .tentang-kami-read-more:hover {
-            color: #218838; /* Darker green on hover */
+            color: #66BB6A;
+            transform: translateX(5px);
         }
 
-        /* Footer */
-        .footer {
-            background-color: rgba(117, 207, 184, 0.95);
-            color: #fff;
-            padding: 3rem 0;
-            margin-top: auto;
-            text-align: center;
-        }
-
-        .footer-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #F0E5D8;
-        }
-
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: #eee;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .footer-links a:hover {
-            color: #fff;
-        }
-
-        .footer-contact p {
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-contact i {
-            margin-right: 0.5rem;
-        }
-
-        .footer-socials a {
-            display: inline-block;
-            margin: 0 1rem;
-            color: #fff;
-            font-size: 1.2rem;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .footer-socials a:hover {
-            color: #F0E5D8;
-        }
-
-        .footer-copyright {
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
-            color: #ddd;
-        }
-
-        /* Responsive Design */
+        /* Responsivitas */
         @media (max-width: 991.98px) {
             .navbar {
-                background-color: rgba(255, 255, 255, 0.95);
-                border-radius: 20px; /* Maintain rounded edges on mobile */
-                width: 90%;
-                top: 10px; /* Slightly less margin on mobile */
-            }
-
-            .navbar-brand {
-                position: static;
-                transform: none;
-                margin: 0 auto;
+                width: 95%;
+                top: 10px;
             }
 
             .navbar-nav {
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
             }
 
             .nav-item {
-                margin: 10px 0; /* Vertical spacing for mobile */
-            }
-
-            .nav-link {
-                padding: 0.75rem 0;
-            }
-
-            .nav-link::after {
-                bottom: -2px; /* Adjust underline position for mobile */
+                margin: 10px 0;
             }
 
             .hero {
-                height: 500px; /* Slightly shorter on mobile */
-                padding: 5rem 2rem;
-                border-bottom-left-radius: 40px;
-                border-bottom-right-radius: 40px;
+                height: 600px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
-            .product-grid {
-                flex-direction: column;
+            .product-grid, .who-we-are-grid {
+                grid-template-columns: 1fr;
             }
 
-            .product-item {
-                flex: 1 1 100%; /* Full width on mobile */
-            }
-
-            .small-product-img {
-                height: 80px; /* Smaller height on mobile */
-            }
-
-            .main-product-img {
-                height: 300px; /* Smaller height on mobile */
-            }
-
-            #tentang-kami-section .row {
+            .tentang-kami-section .row {
                 flex-direction: column;
             }
 
             .tentang-kami-img {
                 margin-top: 2rem;
             }
-
-            .footer {
-                text-align: center;
-            }
-
-            .footer-links,
-            .footer-contact {
-                margin-bottom: 2rem;
-            }
         }
 
         @media (max-width: 767.98px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .hero-subtitle {
                 font-size: 1rem;
             }
 
-            .product-title,
-            .tentang-kami-title {
-                font-size: 1.75rem;
+            .product-title, .tentang-kami-title, .who-we-are-title {
+                font-size: 2rem;
             }
 
-            .card-title {
-                font-size: 1.1rem;
-            }
-
-            .tentang-kami-content p {
+            .who-we-are-subtitle {
                 font-size: 1rem;
-            }
-
-            .small-product-img {
-                height: 60px; /* Even smaller on very small screens */
-            }
-
-            .main-product-img {
-                height: 250px; /* Even smaller on very small screens */
-            }
-
-            .spec-title,
-            .info-title {
-                font-size: 1.1rem;
-            }
-
-            .spec-list li,
-            .info-text {
-                font-size: 0.9rem;
-            }
-
-            .info-text.price {
-                font-size: 1.1rem;
             }
         }
     </style>
     @yield('styles')
 </head>
 <body>
-
     @include('layouts.components.header')
-
     <main>
         @yield('content')
     </main>
-
     @include('layouts.components.footer')
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
     @yield('scripts')
-
 </body>
 </html>

@@ -4,16 +4,16 @@
         <div class="d-flex">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Beranda</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/" id="beranda-link">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#tentang-kami">Tentang Kami</a>
+                    <a class="nav-link" href="/#tentang-kami-section">Tentang Kami</a>
                 </li>
             </ul>
         </div>
 
         <!-- Centered logo -->
-        <a class="navbar-brand mx-auto" href="/">
+        <a class="navbar-brand mx-auto" href="/" id="logo-link">
             <img src="{{ asset('images/logo.png') }}" alt="Abidin JT Logo">
         </a>
 
@@ -35,3 +35,32 @@
         </button>
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the Beranda link and logo link
+    const berandaLink = document.getElementById('beranda-link');
+    const logoLink = document.getElementById('logo-link');
+
+    // Function to handle the click behavior
+    function handleHomeClick(event) {
+        // Check if the current path is the homepage
+        const isHomePage = window.location.pathname === '/';
+
+        if (isHomePage) {
+            // Prevent default link behavior (reload/redirect)
+            event.preventDefault();
+            // Scroll to the top of the page smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        // If not on the homepage, allow the default behavior (redirect to '/')
+    }
+
+    // Add click event listeners to both Beranda link and logo link
+    berandaLink.addEventListener('click', handleHomeClick);
+    logoLink.addEventListener('click', handleHomeClick);
+});
+</script>

@@ -11,6 +11,10 @@ class HomeController extends Controller
         $products = Product::with('images')->get(); // Eager load images
         return view('home', compact('products'));
     }
+    public function about()
+    {
+        return view('about');
+    }
 
     // public function catalog(Request $request)
     // {

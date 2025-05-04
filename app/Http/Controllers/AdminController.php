@@ -78,7 +78,7 @@ class AdminController extends Controller
         }
     }
 
-    public function editProduct($id)
+    public function edit($id)
     {
         $product = Product::with('specifications', 'images')->findOrFail($id);
         return view('admin.products.edit', compact('product'));
@@ -149,17 +149,32 @@ class AdminController extends Controller
         }
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct(Request $request, $id = null)
     {
         try {
-            $product = Product::findOrFail($id);
-            foreach ($product->images as $image) {
-                Storage::delete(str_replace('/storage/', 'public/', $image->image_path));
+            if ($id) {
+                // Single delete
+                $product = Product::findOrFail($id);
+                foreach ($product->images as $image) {
+                    Storage::delete(str_replace('/storage/', 'public/', $image->image_path));
+                }
+                $product->delete();
+                return redirect()->route('admin.products')->with('success', 'Product deleted successfully');
+            } elseif ($request->has('product_ids')) {
+                // Bulk delete
+                $productIds = $request->input('product_ids');
+                $products = Product::whereIn('id', $productIds)->get();
+                foreach ($products as $product) {
+                    foreach ($product->images as $image) {
+                        Storage::delete(str_replace('/storage/', 'public/', $image->image_path));
+                    }
+                    $product->delete();
+                }
+                return redirect()->route('admin.products')->with('success', 'Selected products deleted successfully');
             }
-            $product->delete();
-            return redirect()->route('admin.products')->with('success', 'Product deleted successfully');
+            return back()->withErrors(['error' => 'No products selected for deletion']);
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Failed to delete product: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'Failed to delete products: ' . $e->getMessage()]);
         }
     }
 }

@@ -44,80 +44,79 @@
         }
 
         /* Navbar */
-        .navbar {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1300px;
-            z-index: 1000;
-            padding: 15px 0;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-        }
+        /* Navbar */
+    .navbar {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1300px;
+        z-index: 1000;
+        padding: 15px 0;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+    }
 
-        .navbar-brand {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .navbar-brand img {
+        height: 50px;
+        transition: transform 0.3s ease;
+    }
 
-        .navbar-brand img {
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
+    .navbar-brand img:hover {
+        transform: scale(1.1);
+    }
 
-        .navbar-brand img:hover {
-            transform: scale(1.1);
-        }
+    .navbar-toggler {
+        border: none;
+        color: #fff;
+    }
 
-        .navbar-toggler {
-            border: none;
-        }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
 
-        .navbar-nav {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
 
-        .nav-item {
-            margin: 0 20px;
-        }
+    .nav-item {
+        margin: 0 10px;
+    }
 
-        .nav-link {
-            color: #fff !important;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 10px 15px;
-            position: relative;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
+    .nav-link {
+        color: #fff !important;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 15px;
+        position: relative;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-        .nav-link:hover, .nav-link.active {
-            color: #4CAF50 !important;
-            transform: translateY(-2px);
-        }
+    .nav-link:hover, .nav-link.active {
+        color: #4CAF50 !important;
+        transform: translateY(-2px);
+    }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background: #4CAF50;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: #4CAF50;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
 
-        .nav-link:hover::after, .nav-link.active::after {
-            transform: scaleX(1);
-        }
+    .nav-link:hover::after, .nav-link.active::after {
+        transform: scaleX(1);
+    }
 
         /* Bagian Hero */
         .hero {
@@ -402,18 +401,36 @@
         /* Responsivitas */
         @media (max-width: 991.98px) {
             .navbar {
-                width: 95%;
-                top: 10px;
-            }
+            width: 95%;
+            top: 10px;
+            padding: 10px 15px;
+        }
 
-            .navbar-nav {
-                flex-direction: column;
-                align-items: center;
-            }
+        .navbar-collapse {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 10px;
+        }
 
-            .nav-item {
-                margin: 10px 0;
-            }
+        .navbar-nav {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin: 10px 0;
+        }
+
+        .nav-link {
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .navbar-brand {
+            margin-right: 0;
+        }
 
             .hero {
                 height: 600px;
@@ -458,6 +475,14 @@
             .who-we-are-subtitle {
                 font-size: 1rem;
             }
+
+            .navbar-brand img {
+            height: 40px;
+        }
+
+        .navbar {
+            top: 5px;
+        }
         }
     </style>
     @yield('styles')
@@ -469,9 +494,10 @@
     </main>
     @include('layouts.components.footer')
 
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <!-- Load scripts at the end of body -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({

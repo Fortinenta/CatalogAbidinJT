@@ -88,3 +88,7 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+    @include('layouts.components.navbar-script')
+@endsection

@@ -27,9 +27,9 @@
                     <div class="thumbnail-container mt-3">
                         <div class="thumbnail-wrapper">
                             @forelse($product->images as $index => $image)
-                            <img src="{{ $image->image_path }}" alt="{{ $product->name }}" class="thumbnail-img" onclick="changeMainImage({{ $index }})">
+                            <img src="{{ $image->image_path }}" alt="{{ $product->name }}" class="thumbnail-img" data-image="{{ $image->image_path }}" onclick="changeMainImage('{{ $image->image_path }}', this)">
                             @empty
-                            <img src="https://via.placeholder.com/100" alt="No Image" class="thumbnail-img" onclick="changeMainImage(0)">
+                            <img src="https://via.placeholder.com/100" alt="No Image" class="thumbnail-img" data-image="https://via.placeholder.com/100" onclick="changeMainImage('https://via.placeholder.com/100', this)">
                             @endforelse
                         </div>
                     </div>
@@ -111,20 +111,29 @@
 <script>
 // Declare swiper globally
 let swiper = new Swiper('.product-slider', {
-    loop: true,
+    loop: false,
+    initialSlide: 0,
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
+    }
 });
 
-function changeMainImage(index) {
-    // Adjust for loop mode by using realIndex
-    swiper.slideTo(index);
+function changeMainImage(imageSrc, thumbnailElement) {
+    console.log('Changing main image to:', imageSrc); // Debug log
+    // Update the main image in the active slide
+    const mainImage = document.querySelector('.swiper-slide-active .main-product-img');
+    if (mainImage && imageSrc) {
+        mainImage.src = imageSrc;
+        mainImage.alt = thumbnailElement.alt; // Update alt text for accessibility
+        console.log('Main image updated to:', imageSrc); // Debug log
+    } else {
+        console.error('Main image or imageSrc not found:', mainImage, imageSrc); // Debug log
+    }
+
+    // Highlight the selected thumbnail
+    document.querySelectorAll('.thumbnail-img').forEach(thumb => thumb.classList.remove('active'));
+    thumbnailElement.classList.add('active');
 }
 
 function openImagePopup(imageSrc) {
@@ -141,7 +150,7 @@ function closeImagePopup() {
 </script>
 <style>
 .product-detail-container {
-    background: linear-gradient(135deg, #f0f8f5, #e0f2e9);
+    background: linear-gradient(135deg, #a3e4d7, #B2E0D6);
     min-height: 80vh;
 }
 
@@ -213,6 +222,12 @@ function closeImagePopup() {
 
 .thumbnail-img:hover {
     border-color: #4CAF50;
+    transform: scale(1.1);
+}
+
+.thumbnail-img.active {
+    border-color: #2E7D32;
+    opacity: 1;
     transform: scale(1.1);
 }
 

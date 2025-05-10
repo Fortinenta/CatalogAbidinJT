@@ -68,6 +68,5 @@
         Product Detail Page: Click on a product to view its details, including specifications and images (images may be missing until uploaded). <br>
     Test the Admin Panel: <br>
         Login: Visit http://localhost:8000/admin/login and log in with: <br>
-        Email: admin@abidinjt.com <br>
-        Password: password <br>
+        
 </p>
